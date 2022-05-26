@@ -27,7 +27,7 @@ const quotes = [
     image: 'images/vanessa-vanjie-mateo.jpg'
   },
   {
-    quote: `This is no 'RuPaul's Best Friends Race'!`,
+    quote: `This is not 'RuPaul's Best Friends Race'!`,
     source: 'Lashauwn Beyond',
     citation: 'Drag Race, Season 4',
     year: 2012,
@@ -67,13 +67,28 @@ function getRandomQuote( arr ) {
   return randomQuote;
 }
 
-console.log( getRandomQuote( quotes ) );
-
 /***
  * `printQuote` function
 ***/
 
+function printQuote() {
+  const randomQuote = getRandomQuote( quotes );
+  const html = 
+    `<p class="quote">${randomQuote.quote}</p>
+    <p class="source">${randomQuote.source}
+        <span class="citation">${randomQuote.citation}</span>
+        <span class="year">${randomQuote.year}</span><br><br>
+        <span class="image"><img src="${randomQuote.image}" alt="${randomQuote.source}" style="border-radius:4%;float:right;width:100px;height:100px;"></span>
+        if ( randomQuote.citation ) {
 
+        }
+        if ( randomQuote.year ) {
+
+        }</p>`
+  return html;
+}
+
+document.getElementById('quote-box').innerHTML = printQuote();
 
 /***
  * click event listener for the print quote button
