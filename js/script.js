@@ -3,12 +3,8 @@ Treehouse FSJS Techdegree:
 project 1 - A Random Quote Generator
 ******************************************/
 
-// For assistance: 
-  // Check the "Project Resources" section of the project instructions
-  // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
-
 /*** 
- * `quotes` array 
+ * This is an array containing quotes and their citation information. 
 ***/
 
 const quotes = [
@@ -50,7 +46,8 @@ const quotes = [
 ]
 
 /***
- * `getRandomQuote` function
+ * This is a function that will return a array element from an array passed to it. 
+ * It is used to get a random quote from the 'quotes' array. 
 ***/
 
 // for ( let i = 0; i < quotes.length; i++ ) {
@@ -68,24 +65,31 @@ function getRandomQuote( arr ) {
 }
 
 /***
- * `printQuote` function
+ * This function prints a quote from the getRandomQuote function to the browser. 
 ***/
 
 function printQuote() {
   const randomQuote = getRandomQuote( quotes );
-  const html = 
-    `<p class="quote">${randomQuote.quote}</p>
-    <p class="source">${randomQuote.source}
-        <span class="citation">${randomQuote.citation}</span>
-        <span class="year">${randomQuote.year}</span><br><br>
-        <span class="image"><img src="${randomQuote.image}" alt="${randomQuote.source}" style="border-radius:4%;float:right;width:100px;height:100px;"></span>
-        if ( randomQuote.citation ) {
+  let html = `<p class="quote">${randomQuote.quote}</p>`
+  
+  html +=`<p class="source">${randomQuote.source}`
+  
+  if ( randomQuote.citation ) {
+    html +=`<span class="citation">${randomQuote.citation}</span>`
+  }
 
-        }
-        if ( randomQuote.year ) {
+  if ( randomQuote.year ) {
+    html += `<span class="year">${randomQuote.year}</span>`
+  }
 
-        }</p>`
-  return html;
+  if ( randomQuote.image ) {
+    html += `<br><br><span class="image"><img src="${randomQuote.image}" alt="${randomQuote.source}" 
+      style="float:right; width:100px; height:100px; border-radius:4%; border: 3px solid white"></span>`
+  }
+
+  html += `</p>`
+
+  return document.getElementById('quote-box').innerHTML = html;
 }
 
 document.getElementById('quote-box').innerHTML = printQuote();
