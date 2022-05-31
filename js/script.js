@@ -46,17 +46,18 @@ const quotes = [
 ]
 
 /***
- * This is a function that will return a array element from an array passed to it. 
- * It is used to get a random quote from the 'quotes' array. 
+ * These functions are used together to get a random RGB color value. 
+ * The getColorValue() function gets a random number from 0-255.
+ * The getRGB() function calls the getColorValue() three times to get a random color in RGB notation. 
 ***/
 
-// for ( let i = 0; i < quotes.length; i++ ) {
-//   let quote = quotes[i].quote;
-//   let source = quotes[i].source;
-//   let citation = quotes[i].citation;
-//   let year = quotes[i].year;
-//   let image = quotes[i].image
-// }
+const getColorValue = () => { return ( Math.floor( Math.random() * 256 ) ); }
+const getRGB = () => { return ( `rgb(${getColorValue()}, ${getColorValue()}, ${getColorValue()})` ); }
+
+/***
+ * This is a function that will return a random array element from an array passed to it. 
+ * It is used to get a random quote from the 'quotes' array. 
+***/
 
 function getRandomQuote( arr ) {
   const randomNumber = Math.floor( Math.random() * arr.length );
@@ -65,32 +66,18 @@ function getRandomQuote( arr ) {
 }
 
 /***
- * This function prints a quote from the getRandomQuote function to the browser. 
+ * This function changes the background color of the browser and prints a quote from the getRandomQuote function. 
+ * It is called first in order to appear upon the initial access to the broswser.
+ * It is then set to automatically refresh every 5 seconds. 
 ***/
 
-for ( let i = 0; i > 3; i++) {
-
-}
-
-function getHue() {
-  return ( Math.floor( Math.random() * 255 ) );
-}
-
-function getColorValue() {
-  return ( `rgb(${getHue()}, ${getHue()}, ${getHue()})` );
-}
-
-console.log(getColorValue);
-
-setInterval(printQuote, 5000);
-// document.body.style.backgroundColor = getRandomColor;
+document.getElementById('quote-box').innerHTML = printQuote();
 
 function printQuote() {
-  // const getRandomColor = ( `rgb(${getColorValue()}, ${getColorValue()}, ${getColorValue()})`);
-  const getRandomColor = getColorValue();
-  document.body.style.backgroundColor = getRandomColor;
+  document.body.style.backgroundColor = getRGB();
 
   const randomQuote = getRandomQuote( quotes );
+
   let html = `<p class="quote">${randomQuote.quote}</p>`
   
   html +=`<p class="source">${randomQuote.source}`
@@ -113,7 +100,7 @@ function printQuote() {
   return document.getElementById('quote-box').innerHTML = html;
 }
 
-document.getElementById('quote-box').innerHTML = printQuote();
+setInterval(printQuote, 5000);
 
 /***
  * click event listener for the print quote button
