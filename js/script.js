@@ -68,7 +68,28 @@ function getRandomQuote( arr ) {
  * This function prints a quote from the getRandomQuote function to the browser. 
 ***/
 
+for ( let i = 0; i > 3; i++) {
+
+}
+
+function getHue() {
+  return ( Math.floor( Math.random() * 255 ) );
+}
+
+function getColorValue() {
+  return ( `rgb(${getHue()}, ${getHue()}, ${getHue()})` );
+}
+
+console.log(getColorValue);
+
+setInterval(printQuote, 5000);
+// document.body.style.backgroundColor = getRandomColor;
+
 function printQuote() {
+  // const getRandomColor = ( `rgb(${getColorValue()}, ${getColorValue()}, ${getColorValue()})`);
+  const getRandomColor = getColorValue();
+  document.body.style.backgroundColor = getRandomColor;
+
   const randomQuote = getRandomQuote( quotes );
   let html = `<p class="quote">${randomQuote.quote}</p>`
   
@@ -88,7 +109,7 @@ function printQuote() {
   }
 
   html += `</p>`
-
+  
   return document.getElementById('quote-box').innerHTML = html;
 }
 
