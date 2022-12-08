@@ -1,2 +1,2 @@
 # Random Quote Generator
- My first Techdegree project
+Uses JavaScript functions and arrays to display a randomly generated quote.
